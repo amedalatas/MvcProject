@@ -1,0 +1,33 @@
+﻿@using YeniProje.Models.Entity
+@model List<TBLKATEGORILER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>KATEGORİ ID</th>
+        <th>KATEGORİ ADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.KATEGORIID</th>
+                <td>@ktgr.KATEGORIAD</td>
+                <td><a href="/Kategori/Sil/@ktgr.KATEGORIID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Kategori/KategoriGetir/@ktgr.KATEGORIID" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<a href="/Kategori/Yenikategori" class="btn btn-primary">Yeni Kategori Ekle</a>
+
+<link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" />

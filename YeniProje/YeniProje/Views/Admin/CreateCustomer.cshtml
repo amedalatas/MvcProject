@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Username</label>
+        <input type="text" class="form-control" name="Username" required />
+    </div> 
+
+    <div>
+        <label>Mail</label>
+        <input type="email" class="form-control" name="Email" required />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" class="form-control" asp-for="Password" name="Password" required />
+
+    </div>
+    <div>
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" name="ConfirmPassword" required />
+        <p class="text-danger" id="passwordMismatchError" style="display: none;">Şifreler eşleşmiyor. Lütfen tekrar deneyin.</p>
+    </div>
+    <div>
+        <label>Role</label>
+        <br />
+        <select style="width:300px; height:35px; border-radius :5px; " name="Role" required>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+            <option value="Manager">Manager</option>
+        </select>
+    </div>
+    <div>
+        <button style="margin-top:10px;" class="btn btn-info"> KULLANICI OLUSTUR </button>
+    </div>
+
+</form>
+<script>
+    var passwordInput = document.querySelector('input[name="Password"]');
+    var confirmPasswordInput = document.querySelector('input[name="ConfirmPassword"]');
+    var passwordMismatchError = document.getElementById('passwordMismatchError');
+
+    confirmPasswordInput.addEventListener('input', function() {
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            passwordMismatchError.style.display = 'block';
+        } else {
+            passwordMismatchError.style.display = 'none';
+        }
+    });
+</script>
+
+
+
+
+
+

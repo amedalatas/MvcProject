@@ -1,0 +1,29 @@
+﻿@using YeniProje.Models.Entity
+@model List<TBLMUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table table-bordered">
+    <tr>
+        <th>MUSTERİ ID</th>
+        <th>MUSTERİ AD</th>
+        <th>MUSTERİ SOYAD</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    <tbody>
+        @foreach (var mstri in Model)
+        {
+            <tr>
+                <th>@mstri.MUSTERIID</th>
+                <td>@mstri.MUSTERIAD</td>
+                <td>@mstri.MUSTERISOYAD</td>
+                <th><a href="/Musteri/Sil/@mstri.MUSTERIID" class="btn btn-danger">SİL</a></th>
+                <th><a href="/Musteri/MusteriGetir/@mstri.MUSTERIID" class="btn btn-success">GÜNCELLE</a></th>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Musteri/YeniMusteri" class="btn btn-primary">Yeni Müşteri Ekle</a>

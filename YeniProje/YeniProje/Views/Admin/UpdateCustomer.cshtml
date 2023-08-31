@@ -1,0 +1,32 @@
+﻿@model YeniProje.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "UpdateCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Güncelleme</h2>
+
+@using (Html.BeginForm("UpdateCustomer", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Email)
+
+    <div>
+        <label for="Username">Username</label>
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+    </div>
+    <div>
+        <label for="Email">Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+    <div>
+        <label for="Role">Role</label>
+        @Html.TextBoxFor(m => m.Roles, new { @class = "form-control" })
+    </div>
+
+
+    <!-- Diğer alanlar -->
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+}

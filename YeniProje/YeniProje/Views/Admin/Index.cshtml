@@ -1,0 +1,67 @@
+﻿@using YeniProje.Models.Entity
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Sil</th>
+            <th>Rol Degistir</th>
+            <th>Guncelleme Yap</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+
+                <td>
+                    @foreach (var role in user.Roles)
+                    {
+                        <span>@role</span>
+
+                    }
+
+                </td>
+                <td>
+                    <form method="post" action="@Url.Action("DeleteUser", "Admin")">
+
+                        <input type="hidden" name="username" value="@user.Username" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                </td>
+
+                <td>
+                    <form method="post" action="@Url.Action("ChangeUserRole", "Admin")">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="Username" value="@user.Username" />
+                        @if (user.Roles.Contains("Admin"))
+                        {
+                            <input type="hidden" name="newRole" value="User" />
+                            <button type="submit" class="btn btn-info">User Yap</button>
+                        }
+                        else
+                        {
+                            <input type="hidden" name="newRole" value="Admin" />
+                            <button type="submit" class="btn btn-warning">Admin Yap</button>
+                        }
+                    </form>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("UpdateCustomer", "Admin", new { user = user.Username })" class="btn btn-primary">Güncelle</a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/Admin/CreateCustomer" class="btn btn-primary">Create Customer</a>
